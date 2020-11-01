@@ -81,6 +81,9 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     async function loadCategories(): Promise<void> {
       // Load categories from API
+      const response =  await api.get('/categories');
+
+      setCategories(response.data);
     }
 
     loadCategories();
@@ -88,6 +91,13 @@ const Dashboard: React.FC = () => {
 
   function handleSelectCategory(id: number): void {
     // Select / deselect category
+    if(selectedCategory === id){
+      setSelectedCategory(undefined);
+    }else {
+      setSelectedCategory(id);
+
+    }
+
   }
 
   return (
